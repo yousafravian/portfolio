@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Yousaf Raza Yar — Senior Software Engineer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="icon" type="image/svg+xml" href="assets/bridgecrest-logo.svg" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bc-coconut);
+    color: var(--bc-slate);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--bc-sea); color: var(--bc-dark-blue); }
+
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+
+  /* ---------------- NAV ---------------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,252,247,0.86);
+    backdrop-filter: saturate(150%) blur(10px);
+    border-bottom: 1px solid var(--bc-cloud);
+  }
+  .nav-inner {
+    max-width: 1140px; margin: 0 auto; padding: 14px 40px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; margin-right: auto; text-decoration: none; }
+  .monogram {
+    width: 40px; height: 40px; border-radius: var(--radius-pill);
+    background: var(--bc-dark-blue); color: var(--bc-white);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: -0.02em;
+  }
+  .brand .who { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--bc-dark-blue); line-height: 1; }
+  .brand .who span { display: block; font-family: var(--font-body); font-weight: 500; font-size: 11px; color: var(--bc-stone); margin-top: 3px; letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    font-family: var(--font-display); font-weight: 600; font-size: 14px;
+    color: var(--bc-slate); text-decoration: none;
+    padding: 8px 14px; border-radius: var(--radius-pill); transition: background .15s, color .15s;
+  }
+  .nav-links a:hover, .nav-links a.active { background: var(--bc-cloud); color: var(--bc-dark-blue); }
+  .btn {
+    font-family: var(--font-display); font-weight: 600; font-size: 15px;
+    padding: 11px 22px; border-radius: var(--radius-pill); border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+    transition: background .15s, color .15s, box-shadow .15s, transform .15s;
+  }
+  .btn svg { width: 17px; height: 17px; }
+  .btn-primary { background: var(--bc-interactive); color: var(--bc-white); }
+  .btn-primary:hover { background: var(--bc-light-blue); box-shadow: var(--shadow-card); }
+  .btn-ghost { background: var(--bc-white); color: var(--bc-interactive); border: 1.5px solid var(--bc-interactive); }
+  .btn-ghost:hover { background: var(--bc-cloud); }
+  .btn-dark { background: var(--bc-dark-blue); color: var(--bc-white); }
+  .btn-dark:hover { background: #00497f; box-shadow: var(--shadow-card); }
+  .nav .btn { padding: 9px 18px; font-size: 14px; }
+
+  /* ---------------- HERO ---------------- */
+  .hero { position: relative; overflow: hidden; }
+  .hero-blob {
+    position: absolute; right: -120px; top: -120px; width: 520px; height: 520px;
+    background: radial-gradient(circle at 35% 35%, var(--bc-sea), var(--bc-cloud) 70%);
+    border-radius: 50%; filter: blur(2px); opacity: 0.6; z-index: 0;
+  }
+  .hero-grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.45fr 0.9fr; gap: 56px; align-items: center;
+    padding: 88px 0 92px;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--bc-interactive);
+    margin-bottom: 22px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--bc-interactive); border-radius: 2px; }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(46px, 7vw, 80px); line-height: 0.98; letter-spacing: -0.03em;
+    color: var(--bc-dark-blue); margin: 0 0 18px;
+  }
+  .hero h1 em { font-style: normal; color: var(--bc-interactive); }
+  .hero .role {
+    font-family: var(--font-display); font-weight: 600; font-size: 21px;
+    color: var(--bc-slate); margin: 0 0 22px;
+  }
+  .hero .lede {
+    font-size: 18px; line-height: 1.6; color: var(--bc-slate);
+    max-width: 54ch; margin: 0 0 32px;
+  }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+  .hero-stats { display: flex; gap: 44px; flex-wrap: wrap; }
+  .stat strong {
+    display: block; font-family: var(--font-display); font-weight: 700;
+    font-size: 30px; color: var(--bc-dark-blue); line-height: 1; letter-spacing: -0.02em;
+  }
+  .stat span { font-size: 13px; color: var(--bc-stone); margin-top: 6px; display: block; }
+
+  .hero-photo { position: relative; justify-self: center; }
+  .hero-photo image-slot {
+    width: 300px; height: 360px; display: block;
+    box-shadow: var(--shadow-lifted); border: 6px solid var(--bc-white);
+  }
+  .photo-badge {
+    position: absolute; bottom: -18px; left: -18px;
+    background: var(--bc-white); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 12px 16px;
+    display: flex; align-items: center; gap: 11px;
+  }
+  .photo-badge .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bc-bright-green); box-shadow: 0 0 0 4px var(--bc-mint); }
+  .photo-badge .t { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--bc-dark-blue); line-height: 1.2; }
+  .photo-badge .t span { display: block; font-family: var(--font-body); font-weight: 400; font-size: 11px; color: var(--bc-stone); }
+
+  /* ---------------- SECTIONS ---------------- */
+  section { padding: 78px 0; border-top: 1px solid var(--bc-cloud); scroll-margin-top: 80px; }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px; }
+  .sec-num { font-family: var(--font-display); font-weight: 900; font-size: 18px; color: var(--bc-interactive); letter-spacing: 0.02em; }
+  .sec-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4vw, 42px); letter-spacing: -0.02em; color: var(--bc-dark-blue); margin: 0; }
+  .sec-kicker { margin-left: auto; font-size: 14px; color: var(--bc-stone); max-width: 30ch; text-align: right; line-height: 1.5; }
+
+  /* ---------------- EXPERIENCE ---------------- */
+  .xp { display: flex; flex-direction: column; gap: 20px; }
+  .job {
+    background: var(--bc-white); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card); padding: 30px 32px;
+    display: grid; grid-template-columns: 230px 1fr; gap: 36px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .job:hover { box-shadow: var(--shadow-lifted); transform: translateY(-2px); }
+  .job-rail .co { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--bc-dark-blue); line-height: 1.2; }
+  .job-rail .tagline { font-size: 13px; color: var(--bc-stone); margin-top: 4px; font-style: italic; }
+  .job-rail .meta { margin-top: 14px; display: flex; flex-direction: column; gap: 5px; }
+  .job-rail .meta .when { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--bc-interactive); }
+  .job-rail .meta .where { font-size: 13px; color: var(--bc-stone); }
+  .job-body .title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--bc-slate); margin: 0 0 14px; }
+  .job-body ul { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .job-body li { position: relative; padding-left: 22px; font-size: 15px; line-height: 1.5; color: var(--bc-slate); }
+  .job-body li::before {
+    content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px;
+    border-radius: 2px; background: var(--bc-sky); transform: rotate(45deg);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    font-family: var(--font-body); font-weight: 500; font-size: 12px;
+    padding: 5px 11px; border-radius: var(--radius-pill);
+    background: var(--bc-cloud); color: var(--bc-dark-blue);
+  }
+
+  /* ---------------- PROJECTS ---------------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .proj {
+    background: var(--bc-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+    padding: 28px 30px; text-decoration: none; display: flex; flex-direction: column;
+    transition: box-shadow .2s, transform .2s; position: relative; overflow: hidden;
+  }
+  .proj::after {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--bc-interactive); transform: scaleY(0); transform-origin: top; transition: transform .25s;
+  }
+  .proj:hover { box-shadow: var(--shadow-lifted); transform: translateY(-3px); }
+  .proj:hover::after { transform: scaleY(1); }
+  .proj-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .proj-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--bc-dark-blue); letter-spacing: -0.01em; }
+  .proj-arrow { width: 34px; height: 34px; border-radius: 50%; background: var(--bc-cloud); display: grid; place-items: center; color: var(--bc-interactive); transition: background .2s, color .2s; }
+  .proj:hover .proj-arrow { background: var(--bc-interactive); color: var(--bc-white); }
+  .proj-arrow svg { width: 18px; height: 18px; }
+  .proj p { font-size: 15px; line-height: 1.55; color: var(--bc-slate); margin: 0 0 18px; }
+  .proj .url { margin-top: auto; font-family: var(--font-body); font-size: 13px; color: var(--bc-stone); }
+  .proj .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+
+  /* ---------------- SKILLS ---------------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .skill-card { background: var(--bc-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 28px; }
+  .skill-card .ico { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--bc-cloud); display: grid; place-items: center; color: var(--bc-dark-blue); margin-bottom: 16px; }
+  .skill-card .ico svg { width: 26px; height: 26px; }
+  .skill-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--bc-dark-blue); margin: 0 0 16px; }
+  .skill-card .chips .chip { background: var(--bc-light-gray); }
+
+  /* ---------------- BEYOND ---------------- */
+  .beyond { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
+  .panel { background: var(--bc-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 30px 32px; }
+  .panel h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--bc-dark-blue); margin: 0 0 20px; display: flex; align-items: center; gap: 10px; }
+  .panel h3 svg { width: 22px; height: 22px; color: var(--bc-interactive); }
+  .edu-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-top: 1px solid var(--bc-cloud); }
+  .edu-item:first-of-type { border-top: none; padding-top: 0; }
+  .edu-item .yr { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--bc-interactive); white-space: nowrap; min-width: 88px; }
+  .edu-item .d strong { display: block; font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--bc-dark-blue); margin-bottom: 3px; }
+  .edu-item .d span { font-size: 14px; color: var(--bc-slate); line-height: 1.5; }
+  .gpa-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 12px; border-radius: var(--radius-pill); background: var(--bc-sage); color: var(--bc-dark-green); font-family: var(--font-body); font-weight: 700; font-size: 12px; }
+  .cert-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .cert-list li { display: flex; align-items: center; gap: 11px; font-size: 14px; color: var(--bc-slate); }
+  .cert-list li svg { width: 20px; height: 20px; color: var(--bc-bright-green); flex-shrink: 0; }
+
+  /* ---------------- CONTACT ---------------- */
+  .contact { background: var(--bc-dark-blue); border-radius: var(--radius-xl); padding: 56px 56px; position: relative; overflow: hidden; }
+  .contact::before { content: ""; position: absolute; right: -80px; bottom: -120px; width: 360px; height: 360px; border-radius: 50%; background: rgba(45,143,252,0.22); }
+  .contact-inner { position: relative; z-index: 1; max-width: 620px; }
+  .contact .eyebrow { color: var(--bc-sky); }
+  .contact .eyebrow::before { background: var(--bc-sky); }
+  .contact h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(30px, 4vw, 44px); line-height: 1.05; letter-spacing: -0.02em; color: var(--bc-white); margin: 0 0 16px; }
+  .contact p { font-size: 17px; line-height: 1.6; color: var(--bc-sea); margin: 0 0 30px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* ---------------- FOOTER ---------------- */
+  footer { padding: 40px 0 60px; }
+  .foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .foot .copy { font-size: 13px; color: var(--bc-stone); }
+  .foot .social { display: flex; gap: 8px; }
+  .foot .social a { width: 38px; height: 38px; border-radius: 50%; background: var(--bc-white); box-shadow: var(--shadow-card); display: grid; place-items: center; color: var(--bc-dark-blue); transition: background .15s, color .15s, transform .15s; }
+  .foot .social a:hover { background: var(--bc-dark-blue); color: var(--bc-white); transform: translateY(-2px); }
+  .foot .social svg { width: 18px; height: 18px; }
+
+  /* ---------------- ENTRANCE ---------------- */
+  .reveal { opacity: 1; transform: none; }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 920px) {
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 64px; }
+    .hero-photo { justify-self: start; }
+    .job { grid-template-columns: 1fr; gap: 18px; }
+    .proj-grid, .skill-grid, .beyond { grid-template-columns: 1fr; }
+    .sec-kicker { display: none; }
+    .contact { padding: 40px 28px; }
+  }
+  @media (max-width: 560px) {
+    .wrap, .nav-inner { padding-left: 22px; padding-right: 22px; }
+    .hero-stats { gap: 28px; }
+    .job, .proj, .panel, .skill-card { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <div class="monogram">YR</div>
+      <div class="who">Yousaf Raza<span>Senior Software Engineer</span></div>
+    </a>
+    <nav class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn-primary" href="mailto:yousafrazaravian@gmail.com" data-ico="mail">Get in touch</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero" id="top">
+  <div class="hero-blob"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Front-End &middot; MEAN Stack &middot; Angular</div>
+        <h1>Yousaf Raza <em>Yar</em></h1>
+        <p class="role">Senior Software Engineer</p>
+        <p class="lede">I build fast, maintainable web applications across the Angular and MEAN stack &mdash; obsessing over Core Web Vitals, clean architecture, and the developers I mentor along the way.</p>
+        <div class="hero-cta">
+          <a class="btn btn-dark" href="mailto:yousafrazaravian@gmail.com" data-ico="mail">Email me</a>
+          <a class="btn btn-ghost" href="https://github.com/yousafraza" target="_blank" rel="noopener" data-ico="laptop">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/yousafrazaravian" target="_blank" rel="noopener" data-ico="profile">LinkedIn</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>6+</strong><span>Years building<br/>for the web</span></div>
+          <div class="stat"><strong>Angular</strong><span>Specialist since<br/>v2</span></div>
+          <div class="stat"><strong>6</strong><span>Teams &amp; products<br/>shipped</span></div>
+        </div>
+      </div>
+      <div class="hero-photo reveal">
+        <image-slot id="headshot" shape="rounded" radius="20" fit="cover" placeholder="Drop a headshot"></image-slot>
+        <div class="photo-badge">
+          <span class="dot"></span>
+          <div class="t">Open to roles<span>Remote &middot; Lahore, PK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Experience</h2>
+      <p class="sec-kicker">Six years across healthcare, biotech, and AV product teams.</p>
+    </div>
+    <div class="xp">
+
+      <article class="job reveal">
+        <div class="job-rail">
+          <div class="co">10Pearls</div>
+          <div class="meta">
+            <span class="when">Sep 2025 &mdash; Present</span>
+            <span class="where">Senior Software Consultant</span>
+          </div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Added server-side rendering to lift Core Web Vitals on the marketing landing page.</li>
+            <li>Diagnosed and resolved production memory leaks affecting long-running sessions.</li>
+            <li>Delivered an HL7 healthcare-data integration on AWS Lambda.</li>
+            <li>Integrated Datadog for monitoring and crash-report analysis, and Statsig flags for staged beta releases.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">Core Web Vitals</span><span class="chip">Azure</span><span class="chip">Datadog</span><span class="chip">Statsig</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-rail">
+          <div class="co">Rocktech &mdash; DoctorNow</div>
+          <div class="tagline">Streamlining charting for modern medicine</div>
+          <div class="meta">
+            <span class="when">Mar 2024 &mdash; Sep 2025</span>
+            <span class="where">Senior MEAN Stack Engineer</span>
+          </div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Shipped new product features and mentored junior developers toward cleaner, more testable Angular.</li>
+            <li>Migrated a legacy CommonJS codebase to TypeScript with a Dockerized local stack (LocalStack for AWS).</li>
+            <li>Built an HL7 integration on AWS Lambda and kept Angular dependencies current and secure.</li>
+            <li>Stood up Datadog monitoring and Statsig feature flags for targeted beta rollouts.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">NestJS</span><span class="chip">Node</span><span class="chip">MongoDB</span><span class="chip">Webpack</span><span class="chip">Jest</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-rail">
+          <div class="co">Next Sapien</div>
+          <div class="tagline">Biotechnology research &middot; Houston, TX</div>
+          <div class="meta">
+            <span class="when">Apr 2022 &mdash; Mar 2024</span>
+            <span class="where">Senior MEAN Stack Engineer &middot; Contract</span>
+          </div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Designed and built scalable, maintainable MEAN-stack solutions with cross-functional teams.</li>
+            <li>Practiced test-driven development and CI/CD; authored API guides and design documentation.</li>
+            <li>Led code and design reviews and contributed to agile planning and estimation.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">Ionic</span><span class="chip">Capacitor</span><span class="chip">NestJS</span><span class="chip">MongoDB</span><span class="chip">Docker</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-rail">
+          <div class="co">HardStone Enterprises</div>
+          <div class="tagline">Lahore, PK</div>
+          <div class="meta">
+            <span class="when">Nov 2021 &mdash; Apr 2022</span>
+            <span class="where">Senior Front-End Engineer</span>
+          </div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Owned the front-end codebase across Angular Material, NGX-Bootstrap and NG-ZORRO.</li>
+            <li>Built .NET minimal-API back-ends and deployed to Azure Kubernetes Service (AKS).</li>
+            <li>Implemented real-time chat over XMPP; reviewed code and mentored junior developers.</li>
+            <li>Delivered the Xtheia and Sypore products end to end with QA.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">Ionic</span><span class="chip">.NET</span><span class="chip">Kubernetes</span><span class="chip">PostgreSQL</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-rail">
+          <div class="co">Viable Logics</div>
+          <div class="tagline">Model Town, Lahore</div>
+          <div class="meta">
+            <span class="when">Sep 2020 &mdash; Nov 2021</span>
+            <span class="where">Front-End Engineer</span>
+          </div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Built <strong>Portal Select</strong>, a multi-million-dollar AV sales product, in Angular.</li>
+            <li>Translated design mockups into components and shared them across apps via Angular Elements.</li>
+            <li>Handled complex UI state and logic, patched bugs, and integrated third-party libraries.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">Angular Elements</span><span class="chip">RxJS</span><span class="chip">SCSS</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-rail">
+          <div class="co">GCU &mdash; LMS</div>
+          <div class="tagline">Government College University</div>
+          <div class="meta">
+            <span class="when">Feb 2019 &mdash; Aug 2020</span>
+            <span class="where">Associate Software Engineer</span>
+          </div>
+        </div>
+        <div class="job-body">
+          <ul>
+            <li>Led development of a learning-management system for the Computer Science department.</li>
+            <li>Managed application state with NgRx and built the .NET back-end over a relational database.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Angular</span><span class="chip">NgRx</span><span class="chip">.NET</span><span class="chip">SQL</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Selected Work</h2>
+      <p class="sec-kicker">Products I&rsquo;ve helped design, build, and ship.</p>
+    </div>
+    <div class="proj-grid">
+
+      <a class="proj reveal" href="https://tambr.app" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-name">Tambr</span>
+          <span class="proj-arrow" data-ico="arrow-right"></span>
+        </div>
+        <p>Online booking for businesses serving performing artists &mdash; scheduling, customer management, payment processing, and analytics in one place.</p>
+        <span class="url">tambr.app</span>
+        <div class="tags"><span class="chip">Angular</span><span class="chip">Payments</span><span class="chip">Analytics</span></div>
+      </a>
+
+      <a class="proj reveal" href="https://portal.io" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-name">Portal Select</span>
+          <span class="proj-arrow" data-ico="arrow-right"></span>
+        </div>
+        <p>Powerful AV proposal, design, and sales software that helps professional integrators sell more, faster &mdash; with a UX centered on the installer.</p>
+        <span class="url">portal.io</span>
+        <div class="tags"><span class="chip">Angular Elements</span><span class="chip">Complex UI state</span></div>
+      </a>
+
+      <a class="proj reveal" href="https://test.thecyrano.app/" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-name">Cyrano</span>
+          <span class="proj-arrow" data-ico="arrow-right"></span>
+        </div>
+        <p>A platform that connects users with professionals who coach and guide them through their dating life &mdash; matching, sessions, and messaging.</p>
+        <span class="url">test.thecyrano.app</span>
+        <div class="tags"><span class="chip">MEAN</span><span class="chip">Ionic</span></div>
+      </a>
+
+      <a class="proj reveal" href="https://www.lms.gcu.edu.pk" target="_blank" rel="noopener">
+        <div class="proj-top">
+          <span class="proj-name">GCU LMS</span>
+          <span class="proj-arrow" data-ico="arrow-right"></span>
+        </div>
+        <p>The student and faculty portal for the Computer Science department at Government College University &mdash; courses, content, and grades.</p>
+        <span class="url">lms.gcu.edu.pk</span>
+        <div class="tags"><span class="chip">Angular</span><span class="chip">NgRx</span><span class="chip">.NET</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Toolkit</h2>
+      <p class="sec-kicker">Full-stack, but happiest in the front-end.</p>
+    </div>
+    <div class="skill-grid">
+
+      <div class="skill-card reveal">
+        <div class="ico" data-ico="laptop"></div>
+        <h3>Front-End</h3>
+        <div class="chips">
+          <span class="chip">Angular 2+</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Ionic</span><span class="chip">HTML</span><span class="chip">SASS / CSS</span><span class="chip">Tailwind</span><span class="chip">Bootstrap</span><span class="chip">Webpack</span><span class="chip">Babel</span><span class="chip">Responsive</span><span class="chip">UI Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="ico" data-ico="box"></div>
+        <h3>Back-End</h3>
+        <div class="chips">
+          <span class="chip">Node.js</span><span class="chip">NestJS</span><span class="chip">Express.js</span><span class="chip">.NET</span><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Firebase</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="ico" data-ico="settings"></div>
+        <h3>Also in the bag</h3>
+        <div class="chips">
+          <span class="chip">Java</span><span class="chip">Android</span><span class="chip">Git</span><span class="chip">Figma</span><span class="chip">Algorithms</span><span class="chip">TDD</span><span class="chip">CI / CD</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / BEYOND ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Beyond the Code</h2>
+      <p class="sec-kicker">Education, certifications, and giving back.</p>
+    </div>
+    <div class="beyond">
+
+      <div class="panel reveal">
+        <h3><span data-ico="document"></span>Education &amp; Community</h3>
+        <div class="edu-item">
+          <span class="yr">2017 &mdash; 2021</span>
+          <div class="d">
+            <strong>BSc (Hons) Computer Science</strong>
+            <span>Government College University, Mall Road, Lahore.</span>
+            <span class="gpa-pill">GPA 3.4 / 4.0</span>
+          </div>
+        </div>
+        <div class="edu-item">
+          <span class="yr">2 years</span>
+          <div class="d">
+            <strong>LeetCode problem-solver</strong>
+            <span>Sharpening data structures &amp; algorithms in my free time &mdash; @YousafRaza.</span>
+          </div>
+        </div>
+        <div class="edu-item">
+          <span class="yr">1 year</span>
+          <div class="d">
+            <strong>Stack Overflow &amp; Discord contributor</strong>
+            <span>Helping other developers, mostly with Angular and JavaScript questions.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <h3><span data-ico="insurance"></span>Certifications</h3>
+        <ul class="cert-list">
+          <li data-ico="check">HackerRank &mdash; Angular (Basic)</li>
+          <li data-ico="check">HackerRank &mdash; Angular (Intermediate)</li>
+          <li data-ico="check">HackerRank &mdash; JavaScript (Basic)</li>
+          <li data-ico="check">HackerRank &mdash; JavaScript (Intermediate)</li>
+          <li data-ico="check">HackerRank &mdash; CSS</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section style="border-top:none;">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div class="contact-inner">
+        <div class="eyebrow">Let&rsquo;s build something</div>
+        <h2>Looking for an engineer who sweats the details?</h2>
+        <p>I&rsquo;m open to senior front-end and full-stack roles &mdash; remote or in Lahore. Drop me a line and let&rsquo;s talk.</p>
+        <div class="contact-row">
+          <a class="btn btn-primary" href="mailto:yousafrazaravian@gmail.com" data-ico="mail">yousafrazaravian@gmail.com</a>
+          <a class="btn btn-ghost" style="background:transparent;color:var(--bc-white);border-color:rgba(255,255,255,0.5);" href="tel:+923474557250" data-ico="call">+92 347 4557250</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="copy">&copy; 2026 Yousaf Raza Yar &middot; Senior Software Engineer</div>
+      <div class="social">
+        <a href="https://github.com/yousafraza" target="_blank" rel="noopener" data-ico="laptop" aria-label="GitHub"></a>
+        <a href="https://www.linkedin.com/in/yousafrazaravian" target="_blank" rel="noopener" data-ico="profile" aria-label="LinkedIn"></a>
+        <a href="mailto:yousafrazaravian@gmail.com" data-ico="mail" aria-label="Email"></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="bc-icons.js"></script>
+<script>
+  // Inject Bridgecrest icons into [data-ico] elements
+  document.querySelectorAll('[data-ico]').forEach(function (el) {
+    var svg = window.BC_ICONS && window.BC_ICONS[el.getAttribute('data-ico')];
+    if (svg) el.insertAdjacentHTML('afterbegin', svg);
+  });
+
+  // Active nav link on scroll
+  var sections = ['experience', 'work', 'skills', 'about'].map(function (id) { return document.getElementById(id); });
+  var links = {};
+  document.querySelectorAll('.nav-links a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        Object.values(links).forEach(function (l) { l.classList.remove('active'); });
+        if (links[e.target.id]) links[e.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(function (s) { if (s) spy.observe(s); });
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#003865"/>
+    <text x="50" y="62" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="700" font-size="34" fill="#2D8FFC">YR</text>
+  </svg>
+</template>
+
+</body>
+</html>

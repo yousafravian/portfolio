@@ -1,0 +1,267 @@
+/* ============================================================
+   BRIDGECREST DESIGN SYSTEM — Colors & Type
+   ============================================================
+   Covers three color contexts that coexist in production:
+   1) BC Next  — primary customer-facing web/app (warm Coconut bg)
+   2) BC Pega  — embedded Pega agent/customer flows (cool white/blue)
+   3) Shared semantic tokens — status, text, surface
+   ============================================================ */
+
+/* ---------- FONTS ---------- */
+/* Montserrat = contrast/display (headlines, nav, buttons).
+   Roboto    = body text, forms, tables.
+   Inter     = occasional UI labels in Pega embeds.
+   Open Sans = swatch & legacy labels.
+   Local brand files take precedence; Google Fonts fills any missing weights. */
+
+/* --- Local brand Montserrat --- */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+/* --- Local brand Roboto --- */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('fonts/Roboto-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url('fonts/Roboto-ThinItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/Roboto-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/Roboto-LightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Roboto-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/Roboto-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/Roboto-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('fonts/Roboto-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url('fonts/Roboto-BlackItalic.ttf') format('truetype');
+}
+
+/* Fallback: pull Roboto 500/700 + all Inter/Open Sans + any missing Montserrat weights from Google Fonts.
+   Local @font-face above wins for the weights we ship. */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;900&family=Roboto:wght@500;700&family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  /* ======== BC NEXT (primary consumer product) ======== */
+  /* Blues */
+  --bc-dark-blue: #003865;       /* Primary headers */
+  --bc-interactive: #2D8FFC;     /* Berry — links, buttons */
+  --bc-berry-pega: #076BC9;      /* Pega-variant interactive */
+  --bc-light-blue: #00A3E0;      /* Hover state */
+  --bc-sky: #A2D9FD;             /* Form elements / backgrounds */
+  --bc-sea: #C9E9FE;             /* Accent */
+  --bc-cloud: #E6F6FF;           /* Outlines / dialog bg */
+  --bc-opec-blue: #2F3E60;       /* Card shadow color */
+
+  /* Neutrals */
+  --bc-slate: #3B5260;           /* Primary body text */
+  --bc-stone: #7C93A7;           /* Secondary text / placeholders */
+  --bc-dark-gray: #4C5A67;       /* Info status text */
+  --bc-gray: #E5E6E5;            /* Disabled / dividers */
+  --bc-gray-alt: #E9EEF3;        /* Disabled (Pega) */
+  --bc-light-gray: #F4F5F6;      /* Info boxes */
+  --bc-coconut: #FFFCF7;         /* Warm bg (BC Next) */
+  --bc-white: #FFFFFF;           /* Cards, button labels */
+  --bc-black: #1A1A1A;
+
+  /* Greens (success) */
+  --bc-bright-green: #20AA50;    /* Success banners / text */
+  --bc-dark-green: #155724;      /* Accessible green on light bg */
+  --bc-lime: #7BC24E;            /* Accent */
+  --bc-pistachio: #9FCF62;       /* Accent */
+  --bc-sage: #BCE3BC;            /* Status box */
+  --bc-mint: #D3EFC1;            /* Subtle accent */
+  --bc-light-green: #D4F7D5;     /* Success bg (Pega) */
+
+  /* Reds (error) */
+  --bc-strawberry: #FE7474;      /* Errors (BC Next) */
+  --bc-vivid-red: #D91C29;       /* Errors (Pega) */
+  --bc-cherry: #A40000;          /* Critical / dense red */
+  --bc-cosmo: #FFD0D0;           /* Banners */
+  --bc-rose: #FFEFEF;            /* Banner bg */
+  --bc-pale-red: #FFDBDE;        /* Error bg (Pega) */
+
+  /* Yellows / Oranges (warning) */
+  --bc-caramel: #C1821C;         /* Banners */
+  --bc-cocoa: #7A4C00;           /* Accessible dark-orange text */
+  --bc-honey: #F29723;           /* Chips */
+  --bc-banana: #FFF0AF;          /* Banners, chips */
+  --bc-bright-orange: #FD6000;   /* Warning (Pega) */
+  --bc-light-orange: #FEEDE2;    /* Warning bg (Pega) */
+
+  /* Purples (Pega — pending) */
+  --bc-dark-purple: #681FC3;     /* Pending status text */
+  --bc-light-purple: #F1E9FB;    /* Pending bg */
+
+  /* ======== SEMANTIC TOKENS ======== */
+  /* Use these in product code; swap the underlying hex per surface. */
+  --fg-1: var(--bc-dark-blue);            /* Primary text / headers */
+  --fg-2: var(--bc-slate);                /* Body */
+  --fg-3: var(--bc-stone);                /* Tertiary / helper */
+  --fg-disabled: var(--bc-stone);
+  --fg-inverse: var(--bc-white);
+  --fg-link: var(--bc-berry-pega);
+  --fg-link-hover: var(--bc-light-blue);
+
+  --bg-1: var(--bc-coconut);              /* Page bg (BC Next) */
+  --bg-1-pega: var(--bc-white);           /* Page bg (Pega) */
+  --bg-2: var(--bc-white);                /* Surface / cards */
+  --bg-3: var(--bc-light-gray);           /* Info boxes */
+  --bg-accent: var(--bc-cloud);
+  --bg-brand: var(--bc-dark-blue);
+
+  --border-subtle: var(--bc-gray);
+  --border-default: var(--bc-stone);
+  --border-focus: var(--bc-interactive);
+
+  --status-success-fg: var(--bc-dark-green);
+  --status-success-bg: var(--bc-light-green);
+  --status-warning-fg: var(--bc-cocoa);
+  --status-warning-bg: var(--bc-banana);
+  --status-error-fg: var(--bc-cherry);
+  --status-error-bg: var(--bc-cosmo);
+  --status-pending-fg: var(--bc-dark-purple);
+  --status-pending-bg: var(--bc-light-purple);
+  --status-info-fg: var(--bc-berry-pega);
+  --status-info-bg: var(--bc-cloud);
+
+  /* Shadows */
+  --shadow-card: 0 2px 6px 0 rgba(47, 62, 96, 0.20);
+  --shadow-nav: 0 2px 6px 0 rgba(50, 50, 93, 0.30);
+  --shadow-lifted: 0 8px 24px 0 rgba(47, 62, 96, 0.15);
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Spacing (8px base, with a 4px half-step) */
+  --sp-0: 0;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+
+  /* Mobile frame padding used across templates */
+  --mobile-gutter: 20px;
+
+  /* ======== TYPE ======== */
+  --font-display: 'Montserrat', system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-body: 'Roboto', system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-ui: 'Inter', 'Roboto', system-ui, sans-serif;
+
+  /* Type ramp (matches Figma "Contrast S/M/L" + Body S/M/L) */
+  --type-contrast-l-size: 26px;   --type-contrast-l-lh: 34px;
+  --type-contrast-m-size: 20px;   --type-contrast-m-lh: 28px;
+  --type-contrast-s-size: 18px;   --type-contrast-s-lh: 26px;
+  --type-body-l-size: 16px;       --type-body-l-lh: 24px;
+  --type-body-m-size: 14px;       --type-body-m-lh: 22px;
+  --type-body-s-size: 12px;       --type-body-s-lh: 18px;
+
+  --type-display-hero: 96px;      /* BCXD page titles */
+  --type-display-h1: 64px;
+  --type-display-h2: 32px;
+  --type-display-h3: 26px;
+}
+
+/* ---------- SEMANTIC TYPE CLASSES ---------- */
+/* Prefer these classes over ad-hoc sizes. */
+.bc-display-hero {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--type-display-hero); line-height: 1; color: var(--bc-slate);
+}
+.bc-display-h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--type-display-h1); line-height: 1; color: var(--bc-slate);
+}
+.bc-display-h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--type-display-h2); line-height: 1.1; color: var(--bc-dark-blue);
+}
+.bc-display-h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--type-display-h3); line-height: 1.3; color: var(--bc-dark-blue);
+}
+.bc-contrast-l { font-family: var(--font-display); font-weight: 600; font-size: var(--type-contrast-l-size); line-height: var(--type-contrast-l-lh); color: var(--bc-dark-blue); }
+.bc-contrast-m { font-family: var(--font-display); font-weight: 700; font-size: var(--type-contrast-m-size); line-height: var(--type-contrast-m-lh); color: var(--bc-dark-blue); }
+.bc-contrast-s { font-family: var(--font-display); font-weight: 400; font-size: var(--type-contrast-s-size); line-height: var(--type-contrast-s-lh); color: var(--bc-dark-blue); }
+
+.bc-body-l { font-family: var(--font-body); font-weight: 400; font-size: var(--type-body-l-size); line-height: var(--type-body-l-lh); color: var(--bc-slate); }
+.bc-body-l-emphasis { font-family: var(--font-body); font-weight: 700; font-size: var(--type-body-l-size); line-height: var(--type-body-l-lh); color: var(--bc-slate); }
+.bc-body-m { font-family: var(--font-body); font-weight: 400; font-size: var(--type-body-m-size); line-height: var(--type-body-m-lh); color: var(--bc-slate); }
+.bc-body-m-emphasis { font-family: var(--font-body); font-weight: 700; font-size: var(--type-body-m-size); line-height: var(--type-body-m-lh); color: var(--bc-slate); }
+.bc-body-s { font-family: var(--font-body); font-weight: 400; font-size: var(--type-body-s-size); line-height: var(--type-body-s-lh); color: var(--bc-slate); }
+
+.bc-label { font-family: var(--font-body); font-weight: 700; font-size: 14px; line-height: 1; color: var(--bc-dark-blue); text-transform: none; }
+.bc-button-label { font-family: var(--font-ui); font-weight: 500; font-size: 16px; line-height: 1; }
+
+/* Links */
+.bc-link { color: var(--fg-link); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; }
+.bc-link:hover { color: var(--fg-link-hover); }
